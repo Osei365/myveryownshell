@@ -1,32 +1,30 @@
-#include "shell.h"
+#include "main.h"
 
 /**
- * get_environ - returns the string array copy of our environ
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * get_environ - gets copy of environ
+ * @arg: argument structure
  * Return: Always 0
  */
-char **get_environ(info_t *info)
+char **get_environ(arg_t *arg)
 {
-	if (!info->environ || info->env_changed)
+	if (!arg->environ || arg->env_ch)
 	{
-		info->environ = list_to_strings(info->env);
-		info->env_changed = 0;
+		arg->environ = list_to_strings(arg->envp);
+		arg->env_ch = 0;
 	}
 
-	return (info->environ);
+	return (arg->environ);
 }
 
 /**
- * _unsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: 1 on delete, 0 otherwise
+ * _unsetenv - un set env var
+ * @arg: argument structure
  * @var: the string env var property
+ * Return: 1 or 0
  */
-int _unsetenv(info_t *info, char *var)
+int _unsetenv(arg_t *arg, char *var)
 {
-	list_t *node = info->env;
+	liststr_t *node = arg->envp;
 	size_t i = 0;
 	char *p;
 
@@ -38,56 +36,54 @@ int _unsetenv(info_t *info, char *var)
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), i);
+			arg->env_ch = delete_node_at_index(&(arg->envp), i);
 			i = 0;
-			node = info->env;
+			node = arg->envp;
 			continue;
 		}
 		node = node->next;
 		i++;
 	}
-	return (info->env_changed);
+	return (arg->env_ch);
 }
 
 /**
- * _setenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- * @var: the string env var property
- * @value: the string env var value
- *  Return: Always 0
+ * _setenv - iableset env var
+ * @arg: Argument structure
+ * @var: env var
+ * @value: env var value
+ * Return: Always 0
  */
-int _setenv(info_t *info, char *var, char *value)
+int _setenv(arg_t *arg, char *var, char *value)
 {
-	char *buf = NULL;
-	list_t *node;
+	char *buffer = NULL;
+	liststr_t *node;
 	char *p;
 
 	if (!var || !value)
 		return (0);
 
-	buf = malloc(_strlen(var) + _strlen(value) + 2);
-	if (!buf)
+	buffer = malloc(_strlen(var) + _strlen(value) + 2);
+	if (!buffer)
 		return (1);
-	_strcpy(buf, var);
-	_strcat(buf, "=");
-	_strcat(buf, value);
-	node = info->env;
+	_strcpy(buffer, var);
+	_strcat(buffer, "=");
+	_strcat(buffer, value);
+	node = arg->envp;
 	while (node)
 	{
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
 			free(node->str);
-			node->str = buf;
-			info->env_changed = 1;
+			node->str = buffer;
+			arg->env_ch = 1;
 			return (0);
 		}
 		node = node->next;
 	}
-	add_node_end(&(info->env), buf, 0);
-	free(buf);
-	info->env_changed = 1;
+	add_node_end(&(arg->envp), buffer, 0);
+	free(buffer);
+	arg->env_ch = 1;
 	return (0);
 }
