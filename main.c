@@ -1,15 +1,14 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * main - entry point
- * @ac: arg count
- * @av: arg vector
- *
+ * @ac: argument count
+ * @av: argument vector
  * Return: 0 on success, 1 on error
  */
 int main(int ac, char **av)
 {
-	info_t info[] = { INFO_INIT };
+	arg_t arg[] = { INF_INIT };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -30,15 +29,15 @@ int main(int ac, char **av)
 				_eputs(": 0: Can't open ");
 				_eputs(av[1]);
 				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
+				_eputchar(BUF_FL);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		arg->readfd = fd;
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, av);
+	populate_env_list(arg);
+	read_history(arg);
+	hsh(arg, av);
 	return (EXIT_SUCCESS);
 }
