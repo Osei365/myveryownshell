@@ -80,9 +80,9 @@ typedef struct passinfo
 	int err_no;
 	int lc_flag;
 	char *fn;
-	list_t *envp;
-	list_t *hist;
-	list_t *alias;
+	liststr_t *envp;
+	liststr_t *hist;
+	liststr_t *alias;
 	char **environ;
 	int env_ch;
 	int status;
@@ -93,7 +93,7 @@ typedef struct passinfo
 	int histlen;
 } arg_t;
 
-#define INFO_INIT \
+#define INF_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
