@@ -1,54 +1,54 @@
-#include "shell.h"
+#include "main.h"
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * _strcpy - copies a string into anotehr
+ * @dest: string to be added to
+ * @src: string to be copied
+ * Return: nothing (void)
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int a = 0;
 
 	if (dest == src || src == 0)
 		return (dest);
-	while (src[i])
+	while (src[a])
 	{
-		dest[i] = src[i];
-		i++;
+		dest[a] = src[a];
+		a++;
 	}
-	dest[i] = 0;
+	dest[a] = 0;
 	return (dest);
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * _strdup - returns pointer to newly allocated
+ * space
+ * @str: string
+ * Return: either NULL or pointer
  */
-char *_strdup(const char *str)
+char *_strdup(char *str)
 {
-	int length = 0;
-	char *ret;
+	char *result;
+	int a, l;
 
 	if (str == NULL)
-		return (NULL);
-	while (*str++)
-		length++;
-	ret = malloc(sizeof(char) * (length + 1));
-	if (!ret)
-		return (NULL);
-	for (length++; length--;)
-		ret[length] = *--str;
-	return (ret);
+	return (NULL);
+
+	l = strlen(str);
+	result = (char *)malloc(sizeof(char) * (l + 1));
+	if (result == NULL)
+	return (NULL);
+	for (a = 0; a < l; a++)
+	{
+		result[a] = str[a];
+	}
+	return (result);
 }
 
 /**
  *_puts - prints an input string
  *@str: the string to be printed
- *
  * Return: Nothing
  */
 void _puts(char *str)
@@ -66,22 +66,20 @@ void _puts(char *str)
 
 /**
  * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * @ch: The character to print
+ * Return: 1 or -1
  */
-int _putchar(char c)
+int _putchar(char ch)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[WR_BUF];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (ch == BUF_FL || i >= WR_BUF)
 	{
 		write(1, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (ch != BUF_FL)
+		buf[i++] = ch;
 	return (1);
 }
