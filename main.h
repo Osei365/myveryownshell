@@ -93,7 +93,7 @@ typedef struct passinfo
 	int histlen;
 } arg_t;
 
-#define INFO_INIT \
+#define INF_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
