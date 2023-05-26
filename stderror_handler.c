@@ -52,9 +52,9 @@ int _putfd(char ch, int fd)
 	if (ch == BUF_FL || a >= WR_BUF)
 	{
 		write(fd, buffer, a);
-		i = 0;
+		a = 0;
 	}
-	if (ch != BUF_FLUSH)
+	if (ch != BUF_FL)
 		buffer[a++] = ch;
 	return (1);
 }

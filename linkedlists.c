@@ -16,7 +16,7 @@ liststr_t *add_node(liststr_t **head, const char *str, int num)
 	if (!new_head)
 		return (NULL);
 	_memset((void *)new_head, 0, sizeof(liststr_t));
-	new_head->num = num;
+	new_head->n = num;
 	if (str)
 	{
 		new_head->str = _strdup(str);
@@ -49,7 +49,7 @@ liststr_t *add_node_end(liststr_t **head, const char *str, int num)
 	if (!new_node)
 		return (NULL);
 	_memset((void *)new_node, 0, sizeof(liststr_t));
-	new_node->num = num;
+	new_node->n = num;
 	if (str)
 	{
 		new_node->str = _strdup(str);

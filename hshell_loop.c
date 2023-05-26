@@ -6,7 +6,7 @@
  * @av: the argument vector from main()
  * Return: 0 on success, 1 on error, or error code
  */
-int hshell(info_t *arg, char **av)
+int hshell(arg_t *arg, char **av)
 {
 	ssize_t r = 0;
 	int builtin_ret = 0;
@@ -14,7 +14,7 @@ int hshell(info_t *arg, char **av)
 	while (r != -1 && builtin_ret != -2)
 	{
 		clear_arg(arg);
-		if (interactive(arg))
+		if (shellinteractive(arg))
 			_puts("$ ");
 		_eputchar(BUF_FL);
 		r = get_input(arg);
@@ -25,19 +25,19 @@ int hshell(info_t *arg, char **av)
 			if (builtin_ret == -1)
 				disc_cmd(arg);
 		}
-		else if (interactive(arg))
+		else if (shellinteractive(arg))
 			_putchar('\n');
 		free_arg(arg, 0);
 	}
 	write_history(arg);
 	free_arg(arg, 1);
-	if (!interactive(arg) && arg->status)
+	if (!shellinteractive(arg) && arg->status)
 		exit(arg->status);
 	if (builtin_ret == -2)
 	{
-		if (arg->err_num == -1)
-			exit(info->status);
-		exit(info->err_no);
+		if (arg->err_no == -1)
+			exit(arg->status);
+		exit(arg->err_no);
 	}
 	return (builtin_ret);
 }
@@ -104,7 +104,7 @@ void disc_cmd(arg_t *arg)
 	}
 	else
 	{
-		if ((interactive(arg) || _getenv(arg, "PATH=")
+		if ((shellinteractive(arg) || _getenv(arg, "PATH=")
 			|| arg->av[0][0] == '/') && check_cmd(arg, arg->av[0]))
 			fork_cmd(arg);
 		else if (*(arg->a) != '\n')

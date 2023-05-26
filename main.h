@@ -80,9 +80,9 @@ typedef struct passinfo
 	int err_no;
 	int lc_flag;
 	char *fn;
-	list_t *envp;
-	list_t *hist;
-	list_t *alias;
+	liststr_t *envp;
+	liststr_t *hist;
+	liststr_t *alias;
 	char **environ;
 	int env_ch;
 	int status;
@@ -105,7 +105,7 @@ typedef struct passinfo
 typedef struct builtin
 {
 	char *type;
-	int (*func)(info_t *);
+	int (*func)(arg_t *);
 } blt_t;
 
 
@@ -141,7 +141,6 @@ char *_strdup(const char *);
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
-/
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
@@ -197,8 +196,8 @@ int build_history_list(arg_t *arg, char *buf, int linecount);
 int renumber_history(arg_t *arg);
 
 
-list_t *add_node(liststr_t **, const char *, int);
-list_t *add_node_end(liststr_t **, const char *, int);
+liststr_t *add_node(liststr_t **, const char *, int);
+liststr_t *add_node_end(liststr_t **, const char *, int);
 size_t print_list_str(const liststr_t *);
 int delete_node_at_index(liststr_t **, unsigned int);
 void free_list(liststr_t **);
@@ -207,7 +206,7 @@ void free_list(liststr_t **);
 size_t list_len(const liststr_t *);
 char **list_to_strings(liststr_t *);
 size_t print_list(const liststr_t *);
-list_t *node_starts_with(liststr_t *, char *, char);
+liststr_t *node_starts_with(liststr_t *, char *, char);
 ssize_t get_node_index(liststr_t *, liststr_t *);
 
 int is_chain(arg_t *, char *, size_t *);

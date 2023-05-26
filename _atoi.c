@@ -19,7 +19,7 @@ int interactive(arg_t *arg)
  */
 int is_delim(char ch, char *delim)
 {
-	for (; *delim; *delim++)
+	for (; *delim; delim++)
 		if (*delim == ch)
 			return (1);
 	return (0);

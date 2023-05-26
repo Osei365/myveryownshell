@@ -136,7 +136,7 @@ int renumber_history(arg_t *arg)
 
 	while (node)
 	{
-		node->num = i++;
+		node->n = i++;
 		node = node->next;
 	}
 	return (arg->histlen = i);

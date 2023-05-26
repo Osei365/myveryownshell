@@ -60,8 +60,8 @@ void free_info(arg_t *arg, int all)
 			free(arg->a);
 		if (arg->envp)
 			free_list(&(arg->envp));
-		if (arg->history)
-			free_list(&(arg->history));
+		if (arg->hist)
+			free_list(&(arg->hist));
 		if (arg->alias)
 			free_list(&(arg->alias));
 		ffree(arg->environ);

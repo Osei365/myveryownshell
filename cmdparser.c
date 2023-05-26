@@ -39,7 +39,7 @@ char *double_chars(char *pathstr, int start, int stop)
 		if (pathstr[i] != ':')
 			buffer[k++] = pathstr[i];
 	buffer[k] = 0;
-	return (buf);
+	return (buffer);
 }
 
 /**

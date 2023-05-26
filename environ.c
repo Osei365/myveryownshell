@@ -20,7 +20,7 @@ int _myenv(arg_t *arg)
  */
 char *_getenv(arg_t *arg, const char *name)
 {
-	list_t *node = arg->envp;
+	liststr_t *node = arg->envp;
 	char *comp;
 
 	for (; node; node = node->next)
@@ -64,7 +64,7 @@ int _myunsetenv(arg_t *arg)
 		return (1);
 	}
 	for (a = 1; a <= arg->ac; a++)
-		_unsetenv(arg, arg->av[i]);
+		_unsetenv(arg, arg->av[a]);
 
 	return (0);
 }

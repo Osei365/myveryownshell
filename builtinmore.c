@@ -41,7 +41,7 @@ int unset_alias(arg_t *arg, char *s)
  *
  * Return: Always 0 on success, 1 on error
  */
-int set_alias(arg_t *arg char *s)
+int set_alias(arg_t *arg, char *s)
 {
 	char *comp;
 
