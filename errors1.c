@@ -123,7 +123,7 @@ char *convert_number(long int num, int base, int flags)
 
 /**
  * remove_comments - removes comments
- * @bufffer: buffer address
+ * @buffer: buffer address
  *
  * Return: Always 0;
  */

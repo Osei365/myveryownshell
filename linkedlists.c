@@ -4,6 +4,7 @@
  * add_node - adds node to beginning of node
  * @head: head of linked list
  * @str: string content
+ * @num: n index
  * Return: (new head)
  */
 liststr_t *add_node(liststr_t **head, const char *str, int num)
@@ -35,6 +36,7 @@ liststr_t *add_node(liststr_t **head, const char *str, int num)
  * add_node_end - adds node to end
  * @head: head of node
  * @str: string content in node
+ * @num: n index
  * Return: the address of new node
  */
 liststr_t *add_node_end(liststr_t **head, const char *str, int num)
@@ -89,7 +91,7 @@ size_t print_list_str(const liststr_t *h)
 }
 
 /**
- * delete_nodeint_at_index - deletes node at index
+ * delete_node_at_index - deletes node at index
  * @head: head of linked list
  * @index: index of linked list
  * Return: 1 or -1 as the case may be

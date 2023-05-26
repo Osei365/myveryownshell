@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * clear_info - init argument structure
+ * clear_arg - init argument structure
  * @arg: argument structure
  */
-void clear_info(arg_t *arg)
+void clear_arg(arg_t *arg)
 {
 	arg->a = NULL;
 	arg->av = NULL;
@@ -13,11 +13,11 @@ void clear_info(arg_t *arg)
 }
 
 /**
- * set_info - initialize argument structure
+ * set_arg - initialize argument structure
  * @arg: argument structure
  * @av: argument vector
  */
-void set_info(arg_t *arg, char **av)
+void set_arg(arg_t *arg, char **av)
 {
 	int i = 0;
 
@@ -45,11 +45,11 @@ void set_info(arg_t *arg, char **av)
 }
 
 /**
- * free_info - frees arg_t structure
+ * free_arg - frees arg_t structure
  * @arg: argument address
  * @all: true if freeing all fields
  */
-void free_info(arg_t *arg, int all)
+void free_arg(arg_t *arg, int all)
 {
 	ffree(arg->av);
 	arg->av = NULL;

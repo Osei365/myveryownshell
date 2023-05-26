@@ -44,7 +44,7 @@ char *double_chars(char *pathstr, int start, int stop)
 
 /**
  * disc_path - discovers this cmd in the PATH string
- * @args: the info struct
+ * @arg: the info struct
  * @pathstr: the PATH string
  * @cmd: the cmd to find
  * Return: full path of cmd if found or NULL

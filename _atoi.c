@@ -6,7 +6,7 @@
  *
  * Return: 1 else 0
  */
-int interactive(arg_t *arg)
+int shellinteractive(arg_t *arg)
 {
 	return (isatty(STDIN_FILENO) && arg->readfd <= 2);
 }
