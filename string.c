@@ -1,10 +1,9 @@
-#include "shell.h"
+#include "main.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
- *
- * Return: integer length of string
+ * _strlen - returns length of string
+ * @s: string to be evaluated
+ * Return: length of string
  */
 int _strlen(char *s)
 {
@@ -19,11 +18,10 @@ int _strlen(char *s)
 }
 
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
- *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * _strcmp - compares two strings
+ * @s1: string to be compared
+ * @s2: string to be compared
+ * Return: int
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -41,11 +39,10 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * starts_with - checks if needle starts with haystack
+ * starts_with - checks haystack starter
  * @haystack: string to search
  * @needle: the substring to find
- *
- * Return: address of next char of haystack or NULL
+ * Return: address hastack
  */
 char *starts_with(const char *haystack, const char *needle)
 {
@@ -56,11 +53,10 @@ char *starts_with(const char *haystack, const char *needle)
 }
 
 /**
- * _strcat - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
- *
- * Return: pointer to destination buffer
+ * _strcat - concats strings
+ * @dest: string to be concated
+ * @src: string ti be added
+ * Return: concated dest
  */
 char *_strcat(char *dest, char *src)
 {
